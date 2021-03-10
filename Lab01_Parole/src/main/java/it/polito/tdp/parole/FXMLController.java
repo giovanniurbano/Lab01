@@ -13,7 +13,9 @@ import javafx.scene.control.Label;
 
 public class FXMLController {
 	
-	Parole elenco = new Parole();
+	Parole elenco;
+	double initAdd;
+	double initRem;
 	double add = 0.0;
 	double rem = 0.0;
 	
@@ -46,11 +48,12 @@ public class FXMLController {
 
     @FXML
     void doInsert(ActionEvent event) {
+    	initAdd = System.nanoTime();
     	elenco.addParola(txtParola.getText());
     	txtResult.setText(elenco.toString());
     	txtParola.setText("");
-    	add += System.nanoTime()/1000000000;
-    	txtTempoAdd.setText("Tempo add: " + add/elenco.size() + "s");
+    	add = (System.nanoTime() - initAdd)/1000000;
+    	txtTempoAdd.setText("Tempo add: " + add + "us");
     }
 
     @FXML
@@ -61,10 +64,11 @@ public class FXMLController {
     
     @FXML
     void doCancella(ActionEvent event) {
+    	initRem = System.nanoTime();
     	elenco.cancella(txtResult.getSelectedText());
     	txtResult.setText(elenco.toString());
-    	rem += System.nanoTime()/1000000000;
-    	txtTempoRem.setText("\nTempo rem: " + rem/elenco.size() + "s");
+    	rem = (System.nanoTime() - initRem)/1000000;
+    	txtTempoRem.setText("\nTempo rem: " + rem + "us");
     }
 
     @FXML

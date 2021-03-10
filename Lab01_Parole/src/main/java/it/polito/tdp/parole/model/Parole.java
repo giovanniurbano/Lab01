@@ -7,7 +7,7 @@ public class Parole {
 	private List<String> parole;
 	
 	public Parole() {
-		parole = new LinkedList<String>();
+		parole = new ArrayList<String>();
 	}
 	
 	public int size() {
